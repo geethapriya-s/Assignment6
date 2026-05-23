@@ -1,0 +1,297 @@
+[
+  {
+    "id": "mem:a7b5e0359911",
+    "kind": "fact",
+    "keywords": [
+      "Claude Shannon",
+      "information theory",
+      "biography"
+    ],
+    "descriptor": "Key biographical data and scientific contributions of Claude Shannon",
+    "value": {},
+    "artifact_id": null,
+    "source": "user_query",
+    "run_id": "7b042430",
+    "goal_id": null,
+    "confidence": 0.8,
+    "created_at": "2026-05-23T05:03:28.819523Z"
+  },
+  {
+    "id": "mem:9f41d2824c51",
+    "kind": "tool_outcome",
+    "keywords": [
+      "preview:",
+      "2001)",
+      "elwood",
+      "stored",
+      "\"length_bytes\":",
+      "30,",
+      "fetch_url",
+      "true",
+      "1916",
+      "\"text\":",
+      "tool",
+      "artifact",
+      "33752,",
+      "who",
+      "24,",
+      "4kb;",
+      "\"status\":",
+      "was",
+      "art:6019861625b6107c.",
+      "https://en.wikipedia.org/wiki/claude_shannon"
+    ],
+    "descriptor": "Outcome of fetch_url",
+    "value": {
+      "tool": "fetch_url",
+      "arguments": {
+        "url": "https://en.wikipedia.org/wiki/Claude_Shannon",
+        "fast": true,
+        "timeout": 45
+      },
+      "result_preview": "Tool output exceeded 4KB; stored as artifact art:6019861625b6107c. Preview: {\n  \"status\": 200,\n  \"content_type\": \"application/json\",\n  \"length_bytes\": 33752,\n  \"text\": \"Claude Elwood Shannon (April 30, 1916 \u2013 February 24, 2001) was an American polymath who was a mathematician, electrical engineer, computer scientist, cryptographer, and inventor known as the \\\"father of information theory\\\", and the man who laid the foundations of the Information Age. \\nShannon was the fir..."
+    },
+    "artifact_id": "art:6019861625b6107c",
+    "source": "action",
+    "run_id": "7b042430",
+    "goal_id": "g1",
+    "confidence": 1.0,
+    "created_at": "2026-05-23T05:03:49.597485Z"
+  },
+  {
+    "id": "mem:3d7f7318c7bc",
+    "kind": "preference",
+    "keywords": [
+      "Tokyo",
+      "family-friendly",
+      "weekend",
+      "activities",
+      "weather"
+    ],
+    "descriptor": "User is planning family-friendly activities in Tokyo for the weekend and requires weather-based recommendations.",
+    "value": {},
+    "artifact_id": null,
+    "source": "user_query",
+    "run_id": "92d28827",
+    "goal_id": null,
+    "confidence": 0.8,
+    "created_at": "2026-05-23T05:04:34.578688Z"
+  },
+  {
+    "id": "mem:9e59f675bd3b",
+    "kind": "tool_outcome",
+    "keywords": [
+      "trip.",
+      "2026",
+      "weeks",
+      "warner",
+      "tour",
+      "bros.",
+      "\"the",
+      "the",
+      "family-friendly",
+      "cancellation",
+      "\"snippet\":",
+      "\"title\":",
+      "for",
+      "search",
+      "activities",
+      "harry",
+      "suitable",
+      "\"https://www.getyourguide.com/tokyo-l193/family-friendly-activities-tc1094/\",",
+      "tokyo",
+      "web_search"
+    ],
+    "descriptor": "Outcome of web_search",
+    "value": {
+      "tool": "web_search",
+      "arguments": {
+        "query": "Search for 3 family-friendly activities in Tokyo suitable for a weekend trip.",
+        "max_results": 5
+      },
+      "result_preview": "{\n  \"title\": \"The best Tokyo Family-friendly activities 2026 - Free cancellation | GetYourGuide\",\n  \"url\": \"https://www.getyourguide.com/tokyo-l193/family-friendly-activities-tc1094/\",\n  \"snippet\": \"3 weeks ago - Warner Bros. Studio Tour Tokyo \u2013 The Making of Harry Potter1 day \u2022 Skip the line\"\n}\n{\n  \"title\": \"FREE THINGS TO DO IN TOKYO WITH KIDS \u2013 The Tokyo Chapter\",\n  \"url\": \"https://www.thetokyochapter.com/free-things-to-do-in-tokyo-with-kids/\",\n  \"snippet\": \"April 6, 2026 - Tokyo Water Scienc"
+    },
+    "artifact_id": null,
+    "source": "action",
+    "run_id": "92d28827",
+    "goal_id": "g1",
+    "confidence": 1.0,
+    "created_at": "2026-05-23T05:04:52.362914Z"
+  },
+  {
+    "id": "mem:41870eda1660",
+    "kind": "tool_outcome",
+    "keywords": [
+      "updates.",
+      "forecast\",",
+      "\"tokyo,",
+      "the",
+      "upcoming",
+      "\"snippet\":",
+      "saturday.",
+      "and",
+      "\"title\":",
+      "retrieve",
+      "for",
+      "accurate",
+      "forecast.",
+      "warnings,",
+      "forecast",
+      "wind",
+      "weather",
+      "hourly",
+      "\"https://www.weather-forecast.com/locations/tokyo-1/forecasts/latest\",",
+      "temperature."
+    ],
+    "descriptor": "Outcome of web_search",
+    "value": {
+      "tool": "web_search",
+      "arguments": {
+        "query": "Retrieve the weather forecast for Tokyo for the upcoming Saturday.",
+        "max_results": 5
+      },
+      "result_preview": "{\n  \"title\": \"Tokyo, Japan Weather Forecast\",\n  \"url\": \"https://www.weather-forecast.com/locations/Tokyo-1/forecasts/latest\",\n  \"snippet\": \"12 day Tokyo, Japan Weather Forecast. Live Weather Warnings, hourly weather updates. Accurate Tokyo weather today, forecast for sun, rain, wind and temperature.\"\n}\n{\n  \"title\": \"10-Day Weather Forecast for Tokyo, Tokyo Prefecture, Japan - The ...\",\n  \"url\": \"https://weather.com/weather/tenday/l/a2d49e31992a3679724161c3a9029211ecefeda3e1da24489637a5685ded3fdf"
+    },
+    "artifact_id": null,
+    "source": "action",
+    "run_id": "92d28827",
+    "goal_id": "g2",
+    "confidence": 1.0,
+    "created_at": "2026-05-23T05:05:25.534906Z"
+  },
+  {
+    "id": "mem:b0820e2fcc4b",
+    "kind": "fact",
+    "keywords": [
+      "mom",
+      "birthday",
+      "reminder",
+      "date"
+    ],
+    "descriptor": "Mom's birthday is May 15, 2026",
+    "value": {},
+    "artifact_id": null,
+    "source": "user_query",
+    "run_id": "939c4139",
+    "goal_id": null,
+    "confidence": 0.8,
+    "created_at": "2026-05-23T05:06:40.511317Z"
+  },
+  {
+    "id": "mem:8f21b8e303e5",
+    "kind": "fact",
+    "keywords": [
+      "mom",
+      "birthday"
+    ],
+    "descriptor": "User is inquiring about the date of their mother's birthday.",
+    "value": {},
+    "artifact_id": null,
+    "source": "user_query",
+    "run_id": "68f337a9",
+    "goal_id": null,
+    "confidence": 0.8,
+    "created_at": "2026-05-23T05:07:45.436176Z"
+  },
+  {
+    "id": "mem:dc943d616b36",
+    "kind": "tool_outcome",
+    "keywords": [
+      "python",
+      "asyncio",
+      "best practices",
+      "search"
+    ],
+    "descriptor": "User request for Python asyncio best practices search and synthesis",
+    "value": {},
+    "artifact_id": null,
+    "source": "user_query",
+    "run_id": "60e0b377",
+    "goal_id": null,
+    "confidence": 0.8,
+    "created_at": "2026-05-23T05:09:12.266149Z"
+  },
+  {
+    "id": "mem:ab34f008ce05",
+    "kind": "tool_outcome",
+    "keywords": [
+      "\"snippet\":",
+      "tool.",
+      "asynchronous",
+      "practical\u2014a",
+      "scr",
+      "best",
+      "web",
+      "using",
+      "for",
+      "async",
+      "built-in",
+      "simple",
+      "'python",
+      "library",
+      "python",
+      "\"python",
+      "comprehensive",
+      "search",
+      "\"url\":",
+      "tutorial:"
+    ],
+    "descriptor": "Outcome of web_search",
+    "value": {
+      "tool": "web_search",
+      "arguments": {
+        "query": "Search for 'Python asyncio best practices' using the web search tool.",
+        "max_results": 5
+      },
+      "result_preview": "{\n  \"title\": \"Python AsyncIO Tutorial: A Comprehensive Guide To Async Python\",\n  \"url\": \"https://codesamplez.com/programming/python-asyncio-tutorial\",\n  \"snippet\": \"AsyncIO is Python \u2019 s built-in library for writing asynchronous code using the async and await keywords. ... practical\u2014a simple web scraper ...\"\n}\n{\n  \"title\": \"Asyncio in Python | Pay After Placement Data Science Course\",\n  \"url\": \"https://www.pickl.ai/blog/asyncio-in-python/\",\n  \"snippet\": \"Keep an eye on the Asyncio documentation "
+    },
+    "artifact_id": null,
+    "source": "action",
+    "run_id": "60e0b377",
+    "goal_id": "g1",
+    "confidence": 1.0,
+    "created_at": "2026-05-23T05:09:41.762658Z"
+  },
+  {
+    "id": "mem:72fd67b1a630",
+    "kind": "tool_outcome",
+    "keywords": [
+      "html>\\n<html",
+      "preview:",
+      "output",
+      "\"text/html;",
+      "4kb;",
+      "/>\\n<meta",
+      ">\\n<meta",
+      "fetch_url",
+      "stored",
+      "name=\\\"viewport\\\"",
+      "\"length_bytes\":",
+      "\"text\":",
+      "content=\\\"width=devic",
+      "262374,",
+      "\"<!doctype",
+      "200,",
+      "charset=\\\"utf-8\\\"",
+      "exceeded",
+      "https://codesamplez.com/programming/python-asyncio-tutorial",
+      "tool"
+    ],
+    "descriptor": "Outcome of fetch_url",
+    "value": {
+      "tool": "fetch_url",
+      "arguments": {
+        "url": "https://codesamplez.com/programming/python-asyncio-tutorial",
+        "fast": true,
+        "timeout": 45
+      },
+      "result_preview": "Tool output exceeded 4KB; stored as artifact art:42c83dfeae0c1e64. Preview: {\n  \"status\": 200,\n  \"content_type\": \"text/html; charset=UTF-8\",\n  \"length_bytes\": 262374,\n  \"text\": \"<!DOCTYPE html>\\n<html lang=\\\"en-US\\\">\\n<head >\\n<meta charset=\\\"UTF-8\\\" />\\n<meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\" />\\n<style id=\\\"jetpack-boost-critical-css\\\">@media all{#jp-relatedposts{display:none;padding-top:1em;margin:1em 0;position:relative;clear:both}.jp-r..."
+    },
+    "artifact_id": "art:42c83dfeae0c1e64",
+    "source": "action",
+    "run_id": "60e0b377",
+    "goal_id": "g2",
+    "confidence": 1.0,
+    "created_at": "2026-05-23T05:10:11.048436Z"
+  }
+]

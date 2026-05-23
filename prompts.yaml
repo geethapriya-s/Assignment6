@@ -1,0 +1,110 @@
+# Layer prompts — generic multi-step orchestration (not task-specific).
+# Placeholders use Python str.format syntax.
+
+perception:
+  decompose:
+    system: |
+      Decompose USER QUERY into ordered goals (g1, g2, …): one atomic step each, done=false.
+
+      Determine the minimum number of goals required:
+      - Each goal must be a single, independently verifiable atomic step
+      - Gathering goals (search/fetch/list) come before analysis goals
+      - The final goal synthesizes, compares, or recommends based on prior steps only
+      - If MEMORY HITS already answer the query, one recall-and-answer goal is sufficient
+
+      attach_artifact_id: only from ARTIFACT INDEX MAP when a goal reads stored bytes;
+      null for search-only steps and for the final synthesis goal (uses history).
+
+      Output: structured goals only.
+
+    user: |
+      RUN_ID: {run_id}
+      USER QUERY: {query}
+      MEMORY HITS: {memory_hits}
+      ARTIFACT INDEX MAP: {artifact_index_map}
+
+      Produce dependency-ordered goals that fully satisfy the query.
+
+  verify:
+    system: |
+      Update done and attach_artifact_id from EXECUTION HISTORY only. Do not read artifact files.
+
+      done=true per goal id only with its own evidence:
+      - TOOL […] goal=<this id>: without TOOL_ERROR completes that tool step
+      - ANSWER [<this id>]: completes synthesis/analysis goals
+      - Never mark a goal done because another goal's ANSWER or TOOL satisfied it
+
+      attach_artifact_id: from ARTIFACT INDEX MAP; null on goals that still need tools.
+
+      Output: structured goals only.
+
+    user: |
+      RUN_ID: {run_id}
+      USER QUERY: {query}
+      PRIOR GOALS: {prior_goals}
+      MEMORY HITS: {memory_hits}
+      ARTIFACT INDEX MAP: {artifact_index_map}
+      EXECUTION HISTORY: {execution_history}
+
+decision:
+  system: |
+    One action for ACTIVE GOAL only: answer OR tool_call (exactly one).
+
+    Tool choice (by role, not by copying goal text into arguments):
+    - First / discovery goals: web_search with a short search phrase (<=12 words), not the full goal sentence
+    - Middle / retrieval goals: fetch_url on a specific https URL when history or goal implies a document/API;
+      prefer compact text endpoints over large HTML portals when possible
+    - Last / synthesis goals: answer only — use EXECUTION HISTORY (prior TOOL/ANSWER lines); no new tool_call
+    - File operation goals: use create_file, update_file, list_dir, read_file as appropriate for the task
+
+    When ATTACHED ARTIFACTS is not (none): ground answers in PREVIEW only.
+
+    web_search query: concise keywords from goal intent; never paste USER QUERY or full goal verbatim.
+    fetch_url url: bare https URL only; never art: handles in arguments.
+
+    Output: structured decision only.
+
+  user: |
+    USER QUERY: {query}
+    ACTIVE GOAL [{goal_id}] ({goal_position}/{total_goals}): {goal_text}
+    done={goal_done} attach_artifact_id={attach_artifact_id}
+
+    {substantive_rule}
+    {position_note}
+    MEMORY HITS: {memory_hits}
+    ATTACHED ARTIFACTS: {attached_artifacts}
+    MCP TOOLS: {mcp_tools}
+    EXECUTION HISTORY: {execution_history}
+
+  substantive_rule: |
+    Answers: substantive, cite EXECUTION HISTORY and attachments only.
+
+  tools_rules_footer: |
+    Required schema fields mandatory. web_search: short query string. fetch_url: fast=true default.
+
+  repair_arguments:
+    system: |
+      Return tool JSON only. web_search "query": ≤12 word search phrase from goal intent.
+      fetch_url "url": bare https URL from history when relevant.
+    user: |
+      USER QUERY: {query}
+      ACTIVE GOAL: {goal_text}
+      TOOL: {tool_name}
+      REQUIRED: {required_fields}
+      CURRENT: {current_arguments}
+      HISTORY: {execution_history}
+
+memory:
+  remember:
+    user: |
+      Extract memory from TEXT: kind, keywords, descriptor, value. No hallucinated fields.
+
+      TEXT: {raw_text}
+
+  relevant:
+    user: |
+      Query: {query}
+      Rank by relevance (cross-run ok). JSON {{"indices": [...]}} max {top_k}.
+
+      MEMORY ENTRIES:
+      {memory_entries}
